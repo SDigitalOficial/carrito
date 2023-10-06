@@ -1,0 +1,14 @@
+{
+    "name": "sitedigitaloficial/carrito",
+    "description": "Site Digital S.A.S Carrito Módulo para la gestión y administración de ventas de productos y servicios digitalmente",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "SiteDigital",
+            "email": "desarrollo@sitedigital.com.co"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}

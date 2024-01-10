@@ -712,15 +712,46 @@ session()->forget('porcentaje');
 
 
 
-  foreach($cart as $producto){
-   $this->saveOrderItem($producto, $contenido->id);  
+
   }
 
-
+ foreach($cart as $producto){
+   $this->saveOrderItemepayco($producto, $contenido->id);  
   }
   
 
 }
+
+
+
+protected function saveOrderItemepayco($producto, $contenido_id)
+{
+
+if(!$this->tenantName){
+OrderItem::create([
+'price' => $producto->precio,
+'quantity' => $producto->quantity,
+'product_id' => $producto->id,
+'order_id' => $order_id,
+'user_id' => '1'
+]);
+}else{
+\DigitalsiteSaaS\Carrito\Tenant\OrderItem::create([
+'price' => $producto->precio,
+'quantity' => $producto->quantity,
+'product_id' => $producto->id,
+'order_id' => $contenido_id,
+'user_id' => '1',
+'fechad' => session()->get('dia')
+]);
+
+
+}
+session()->forget('identificador');
+session()->forget('dia');
+
+}
+
 
 
 protected function saveOrder()

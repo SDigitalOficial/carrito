@@ -97,7 +97,7 @@
                                     <tbody>
                                      @foreach($productos as $producto)
                                         <tr>
-                                            <td class="text-center" style="width:1%"><img src="{{ $producto->image }}" class="img-responsive" alt="Image"></td>
+                                            <td class="text-center" style="width:1%"><img src="/{{ $producto->image }}" class="img-responsive" alt="Image"></td>
                                             <td class="text-center" style="width:1%">
                                                 {!! QrCode::size(70)->generate('https://www.jordandesajonia.edu.co/') !!}
                                             </td>

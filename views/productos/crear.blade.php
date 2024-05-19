@@ -107,14 +107,14 @@
                                         <div class="form-group">
                                             <label class="col-md-3 control-label" for="example-text-input">Cantidad Stock</label>
                                             <div class="col-md-9">
-                                                {{Form::text('stock', '', array('class' => 'form-control','placeholder'=>'Ingrese Cantidad Stock','required' => 'required'))}}
+                                                {{Form::text('stock', '0', array('class' => 'form-control','placeholder'=>'Ingrese Cantidad Stock','required' => 'required'))}}
                                             </div>
                                         </div>
 
                                          <div class="form-group">
                                             <label class="col-md-3 control-label" for="example-text-input">Año publicación</label>
                                             <div class="col-md-9">
-                                                {{Form::text('ano', '', array('class' => 'form-control','placeholder'=>'Ingrese año publicación','required' => 'required'))}}
+                                                {{Form::text('ano', date('Y'), array('class' => 'form-control','placeholder'=>'Ingrese año publicación','required' => 'required'))}}
                                             </div>
                                         </div>
 
@@ -135,14 +135,14 @@
                                         <div class="form-group">
                                             <label class="col-md-3 control-label" for="example-text-input">Porcentaje de Descuento</label>
                                             <div class="col-md-9">
-                                                {{Form::text('descuento', '', array('class' => 'form-control','placeholder'=>'Ingrese Descuento','required' => 'required'))}}
+                                                {{Form::text('descuento', '0', array('class' => 'form-control','placeholder'=>'Ingrese Descuento','required' => 'required'))}}
                                             </div>
                                         </div>
    
                                         <div class="form-group">
                                             <label class="col-md-3 control-label" for="example-text-input">Iva</label>
                                             <div class="col-md-9">
-                                                {{Form::text('iva', '', array('class' => 'form-control','placeholder'=>'Ingrese Iva','required' => 'required'))}}
+                                                {{Form::text('iva', '0', array('class' => 'form-control','placeholder'=>'Ingrese Iva','required' => 'required'))}}
                                             </div>
                                         </div>
 

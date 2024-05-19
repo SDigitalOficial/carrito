@@ -37,7 +37,8 @@ use GuzzleHttp;
 use GuzzleHttp\Client;
 use Carbon\Carbon;
 use Mail;
- use App\Mail\Cotizador;
+use App\Mail\Cotizador;
+use DigitalsiteSaaS\Pagina\GrapeTemp;
 
 class CartController extends Controller{
  
@@ -104,16 +105,24 @@ select('ruta','fecha')
 
 $programacion = \DigitalsiteSaaS\Carrito\Tenant\Programacion::where('fecha', '>=', date('Y-m-d'))->get();
 
+if($cart === ''){
 foreach($cart as $item){
 
-    $data = \DigitalsiteSaaS\Carrito\Tenant\Pumadrive::where('fecha', '=', session()->get('dia'))->where('ruta','=',$item->category_id)->count();
+$data = \DigitalsiteSaaS\Carrito\Tenant\Pumadrive::where('fecha', '=', session()->get('dia'))->where('ruta','=',$item->category_id)->count();
 $programa = \DigitalsiteSaaS\Carrito\Tenant\Programacion::where('fecha', '=', session()->get('dia'))->where('product_id','=',$item->category_id)->get();
 }
-
-
-
 }
-return view('Templates.'.$templateweb.'.carrito.cart', compact('cart', 'total', 'plantilla', 'menu', 'subtotal', 'iva', 'descuento', 'url', 'categoriapro', 'plantillaes', 'seo', 'departamento','whatsapp','meta','menufoot','programacion','programa','data'));
+else{}
+}
+ $select = \DigitalsiteSaaS\Pagina\Tenant\Grapeselect::where('id','=', '1')->get();
+ foreach($select as $select){
+  $plantillas = GrapeTemp::where('id','=',$select->template)->get();
+}
+ foreach($plantillas as $plantillas){
+  $template = $plantillas->plantilla;
+ }
+
+return view('Templates.'.$template.'.compras.cart', compact('cart', 'total', 'plantilla', 'menu', 'subtotal', 'iva', 'descuento', 'url', 'categoriapro', 'plantillaes', 'seo', 'departamento','whatsapp','meta','menufoot','programacion','programa','data'));
 }
 
 
@@ -356,8 +365,16 @@ $menufoot = \DigitalsiteSaaS\Pagina\Tenant\Page::orderBy('posta', 'asc')->get();
 
 }
 
+ $select = \DigitalsiteSaaS\Pagina\Tenant\Grapeselect::where('id','=', '1')->get();
+ foreach($select as $select){
+  $plantillas = GrapeTemp::where('id','=',$select->template)->get();
+}
+ foreach($plantillas as $plantillas){
+  $template = $plantillas->plantilla;
+ }
 
-return view('Templates.'.$templateweb.'.carrito.order', compact('cart', 'total', 'subtotal', 'plantilla', 'menu','configuracion','price','suma', 'iva', 'descuento', 'costoenvio', 'categories', 'precioenvio', 'preciomunicipio', 'plantillaes', 'nombremunicipio', 'seo','departamento','meta','whatsapp','menufoot'));
+
+return view('Templates.'.$template.'.compras.order', compact('cart', 'total', 'subtotal', 'plantilla', 'menu','configuracion','price','suma', 'iva', 'descuento', 'costoenvio', 'categories', 'precioenvio', 'preciomunicipio', 'plantillaes', 'nombremunicipio', 'seo','departamento','meta','whatsapp','menufoot'));
 
 }
 

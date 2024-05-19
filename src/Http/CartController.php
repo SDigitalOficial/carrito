@@ -122,7 +122,8 @@ else{}
   $template = $plantillas->plantilla;
  }
 
-return view('Templates.'.$template.'.compras.cart', compact('cart', 'total', 'plantilla', 'menu', 'subtotal', 'iva', 'descuento', 'url', 'categoriapro', 'plantillaes', 'seo', 'departamento','whatsapp','meta','menufoot','programacion','programa','data'));
+
+return view('Templates.'.$template.'.compras.cart', compact('cart', 'total', 'plantilla', 'menu', 'subtotal', 'iva', 'descuento', 'url', 'categoriapro', 'plantillaes', 'seo', 'departamento','whatsapp','meta','menufoot','programacion','programa','data','plantillas'));
 }
 
 

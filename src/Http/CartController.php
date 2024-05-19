@@ -77,13 +77,10 @@ $meta = Page::where('slug','=','inicio')->get();
 $programacion = Programacion::all();
 $menufoot = Page::orderBy('posta', 'asc')->get();
 }else{
+
 $departamento = \DigitalsiteSaaS\Carrito\Tenant\Departamento::all();
 $seo = \DigitalsiteSaaS\Pagina\Tenant\Seo::where('id','=',1)->get(); 
-$plantilla = \DigitalsiteSaaS\Pagina\Tenant\Template::all();
 $meta = \DigitalsiteSaaS\Pagina\Tenant\Page::where('slug','=','1')->get();
-foreach ($plantilla as $plantillas) {
- $templateweb = $plantillas->template;
-}
 $menu = \DigitalsiteSaaS\Pagina\Tenant\Page::whereNull('page_id')->orderBy('posta', 'asc')->get();
 $cart = session()->get('cart');
 $url = \DigitalsiteSaaS\Carrito\Tenant\Configuracion::where('id', '=', 1)->get();
@@ -91,40 +88,24 @@ $iva = $this->iva();
 $total = $this->total();
 $subtotal = $this->subtotal();
 $descuento = $this->descuento();
-$plantillaes = \DigitalsiteSaaS\Pagina\Tenant\Template::all();
+$plantilla_dig = \DigitalsiteSaaS\Pagina\Tenant\Template::all();
 $categoriapro = \DigitalsiteSaaS\Carrito\Tenant\Category::all();
-$whatsapp = \DigitalsiteSaaS\Pagina\Tenant\Whatsapp::all();
 $menufoot = \DigitalsiteSaaS\Pagina\Tenant\Page::orderBy('posta', 'asc')->get();
-$programacion = \DigitalsiteSaaS\Carrito\Tenant\Programacion::all();
-$validacion = \DigitalsiteSaaS\Carrito\Tenant\Pumadrive::
-select('ruta','fecha')
-->selectRaw('count(ruta) as sum')
-->groupBy('fecha')
-->groupBy('ruta')
-->get();
-
-$programacion = \DigitalsiteSaaS\Carrito\Tenant\Programacion::where('fecha', '>=', date('Y-m-d'))->get();
-
-if($cart === ''){
-foreach($cart as $item){
-
-$data = \DigitalsiteSaaS\Carrito\Tenant\Pumadrive::where('fecha', '=', session()->get('dia'))->where('ruta','=',$item->category_id)->count();
-$programa = \DigitalsiteSaaS\Carrito\Tenant\Programacion::where('fecha', '=', session()->get('dia'))->where('product_id','=',$item->category_id)->get();
+$whatsapp = \DigitalsiteSaaS\Pagina\Tenant\Whatsapp::where('id','=',1)->get();
 }
-}
-else{}
-}
- $select = \DigitalsiteSaaS\Pagina\Tenant\Grapeselect::where('id','=', '1')->get();
+
+$select = \DigitalsiteSaaS\Pagina\Tenant\Grapeselect::where('id','=', '1')->get();
+ 
  foreach($select as $select){
   $plantillas = GrapeTemp::where('id','=',$select->template)->get();
-}
+ }
 
  foreach($plantillas as $plantillastemp){
   $template = $plantillastemp->plantilla;
  }
 
 
-return view('Templates.'.$template.'.compras.cart', compact('cart', 'total', 'plantilla', 'menu', 'subtotal', 'iva', 'descuento', 'url', 'categoriapro', 'plantillaes', 'seo', 'departamento','whatsapp','meta','menufoot','programacion','programa','data','plantillas'));
+return view('Templates.'.$template.'.compras.cart', compact('cart','plantilla_dig', 'total', 'menu', 'subtotal', 'iva', 'descuento', 'url', 'categoriapro', 'seo', 'departamento','whatsapp','menufoot','plantillas'));
 }
 
 

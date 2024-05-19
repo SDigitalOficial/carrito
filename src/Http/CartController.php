@@ -118,8 +118,9 @@ else{}
  foreach($select as $select){
   $plantillas = GrapeTemp::where('id','=',$select->template)->get();
 }
- foreach($plantillas as $plantillas){
-  $template = $plantillas->plantilla;
+
+ foreach($plantillas as $plantillastemp){
+  $template = $plantillastemp->plantilla;
  }
 
 

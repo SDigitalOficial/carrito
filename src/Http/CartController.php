@@ -360,7 +360,7 @@ $select = \DigitalsiteSaaS\Pagina\Tenant\Grapeselect::where('id','=', '1')->get(
 
 
 
-return view('Templates.'.$template.'.compras.order', compact('cart', 'total', 'subtotal', 'plantilla', 'menu','configuracion','price','suma', 'iva', 'descuento', 'costoenvio', 'categories', 'precioenvio', 'preciomunicipio', 'plantillaes', 'nombremunicipio', 'seo','departamento','meta','whatsapp','menufoot'));
+return view('Templates.'.$template.'.compras.order', compact('cart', 'total', 'subtotal', 'plantilla', 'menu','configuracion','price','suma', 'iva', 'descuento', 'costoenvio', 'categories', 'precioenvio', 'preciomunicipio', 'plantillaes', 'nombremunicipio', 'seo','departamento','meta','whatsapp','menufoot','plantillas'));
 
 }
 

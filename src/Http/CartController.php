@@ -355,11 +355,9 @@ $select = \DigitalsiteSaaS\Pagina\Tenant\Grapeselect::where('id','=', '1')->get(
   $plantillas = GrapeTemp::where('id','=',$select->template)->get();
  }
 
- foreach($plantillas as $plantillastemp){
-  $template = $plantillastemp->plantilla;
+ foreach($plantillas as $plantillas){
+  $template = $plantillas->plantilla;
  }
-
-
 
 return view('Templates.'.$template.'.compras.order', compact('cart', 'total', 'subtotal', 'plantilla', 'menu','configuracion','price','suma', 'iva', 'descuento', 'costoenvio', 'categories', 'precioenvio', 'preciomunicipio', 'plantillaes', 'nombremunicipio', 'seo','departamento','meta','whatsapp','menufoot','plantillas','plantilla_dig'));
 
@@ -617,6 +615,7 @@ session()->forget('terminos');
 session()->forget('cart');
 session()->forget('codigo');
 session()->forget('porcentaje');
+session()->forget('message');
 
 }else{
 $contenido = \DigitalsiteSaaS\Carrito\Tenant\Order::where('identificador',session::get('identificador'))
@@ -657,11 +656,12 @@ session()->forget('email');
 session()->forget('direnvio');
 session()->forget('inmueble');
 session()->forget('informacion');
-
+session()->forget('identificador');
 session()->forget('terminos');
 session()->forget('cart');
 session()->forget('codigo');
 session()->forget('porcentaje');
+session()->forget('message');
 
 }
   }else{
@@ -681,14 +681,14 @@ session()->forget('porcentaje');
   $contenido->cos_envio = session::get('preciomunicipio');
   $contenido->codigo = '0000';
   $contenido->estado = 'Pendiente';
-  $contenido->nombre = Input::get('nombres');
-  $contenido->direccion = Input::get('direccion');
-  $contenido->email = Input::get('email');
-  $contenido->documento = Input::get('documento');
-  $contenido->telefono = Input::get('telefono');
-  $contenido->inmueble = Input::get('inmueble');
-  $contenido->informacion = Input::get('informacion');
-  $contenido->identificador = Input::get('identificador');
+  $contenido->nombre = session::get('nombres');
+  $contenido->direccion = session::get('direccion');
+  $contenido->email = session::get('email');
+  $contenido->documento = session::get('documento');
+  $contenido->telefono = session::get('telefono');
+  $contenido->inmueble = session::get('inmueble');
+  $contenido->informacion = session::get('informacion');
+  $contenido->identificador = session::get('identificador');
   $contenido->ciudad = session::get('nombredepartamento');
   $contenido->departamento = session::get('nombremunicipio');
   $contenido->tipo = session::get('porcentaje');
@@ -708,11 +708,12 @@ session()->forget('email');
 session()->forget('direnvio');
 session()->forget('inmueble');
 session()->forget('informacion');
-
+session()->forget('message');
 session()->forget('terminos');
 session()->forget('cart');
 session()->forget('codigo');
 session()->forget('porcentaje');
+
 
 
 

@@ -348,13 +348,16 @@ $menufoot = \DigitalsiteSaaS\Pagina\Tenant\Page::orderBy('posta', 'asc')->get();
 
 }
 
- $select = \DigitalsiteSaaS\Pagina\Tenant\Grapeselect::where('id','=', '1')->get();
+$select = \DigitalsiteSaaS\Pagina\Tenant\Grapeselect::where('id','=', '1')->get();
+ 
  foreach($select as $select){
   $plantillas = GrapeTemp::where('id','=',$select->template)->get();
-}
- foreach($plantillas as $plantillas){
-  $template = $plantillas->plantilla;
  }
+
+ foreach($plantillas as $plantillastemp){
+  $template = $plantillastemp->plantilla;
+ }
+
 
 
 return view('Templates.'.$template.'.compras.order', compact('cart', 'total', 'subtotal', 'plantilla', 'menu','configuracion','price','suma', 'iva', 'descuento', 'costoenvio', 'categories', 'precioenvio', 'preciomunicipio', 'plantillaes', 'nombremunicipio', 'seo','departamento','meta','whatsapp','menufoot'));
